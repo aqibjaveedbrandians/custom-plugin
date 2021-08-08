@@ -1,5 +1,4 @@
 <?php
-
 /*
 Plugin Name:Custom Plugin
 Plugin URI:http://localhost/plugin-dev/
@@ -18,8 +17,9 @@ define("PLUGIN_VERSION", "1.0");
 
 // PlUGIN INCLUDE
 
+include_once PLUGIN_DIR_PATH."/include/db.php";
+include_once PLUGIN_DIR_PATH."/include/custom-css-js.php";
 include_once PLUGIN_DIR_PATH."/include/plugin-menu.php";
 include_once PLUGIN_DIR_PATH."/include/files-view.php";
-include_once PLUGIN_DIR_PATH."/include/custom-css-js.php";
 
 ?>
