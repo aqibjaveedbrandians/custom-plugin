@@ -86,4 +86,17 @@ function create_page(){
 }
 register_activation_hook(__FILE__, "create_page");
 
+//AJAX REQUEST ON CLICK BUTTON
+
+if (isset($_REQUEST['action'])) {  // it check the action param is set or not
+	switch ($_REQUEST['action']) { // if set pass to switch method to match case 
+			case 'custom_plugin_library': add_action("admin_init", "add_custom_plugin_library");
+				function add_custom_plugin_library(){ // function attached with the action hook
+					global $wpdb;
+					include_once PLUGIN_DIR_PATH."/library/custom-plugin-lib.php"; // ajax handler file within library folder
+				}
+			  break;
+	}	
+}
+
 ?>
