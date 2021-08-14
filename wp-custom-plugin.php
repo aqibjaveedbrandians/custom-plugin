@@ -45,20 +45,45 @@ register_activation_hook(__FILE__, "custom_plugin_table_create");
 
 //PLUGIN DATABASE TABLE DROP HOOK
 
+function custom_plugin_table_drop(){
+	    global $table_prefix, $wpdb;
+		$table_slug = $table_prefix . 'custom_plugin';
+		$wpdb->query("DROP table IF Exists $table_slug");
+
+		
+		//CUSTOM PAGE DELETE
+		$the_post_id = get_option("custom_plugin_page_id");
+		if (!empty($the_post_id)) {
+			wp_delete_post($the_post_id, true);
+		}
+}
+register_deactivation_hook(__FILE__, "custom_plugin_table_drop");
+
+//PLUGIN DATABASE TABLE NOT DROP WITHOUT DELETE PLUHIN
+
 // function custom_plugin_table_drop(){
 // 	    global $table_prefix, $wpdb;
 // 		$table_slug = $table_prefix . 'custom_plugin';
 // 		$wpdb->query("DROP table IF Exists $table_slug");
 // }
-// register_deactivation_hook(__FILE__, "custom_plugin_table_drop");
+// register_uninstall_hook(__FILE__, "custom_plugin_table_drop");
 
-//PLUGIN DATABASE TABLE NOT DROP WITHOUT DELETE PLUHIN
+//CREATE PAGE PLUGIN ACTIVATE
 
-function custom_plugin_table_drop(){
-	    global $table_prefix, $wpdb;
-		$table_slug = $table_prefix . 'custom_plugin';
-		$wpdb->query("DROP table IF Exists $table_slug");
+function create_page(){
+
+	$page = array();
+	$page['post_title'] = "Custom Plugin Page";
+	$page['post_content'] = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
+	$page['post_status'] = "Publish";
+	$page['post_slug'] = "custom_plugin_page";
+	$page['post_type'] = "page";
+
+	$post_id = wp_insert_post($page);
+
+	add_option("custom_plugin_page_id",$post_id);
+
 }
-register_uninstall_hook(__FILE__, "custom_plugin_table_drop");
+register_activation_hook(__FILE__, "create_page");
 
 ?>
