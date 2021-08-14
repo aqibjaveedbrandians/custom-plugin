@@ -45,11 +45,20 @@ register_activation_hook(__FILE__, "custom_plugin_table_create");
 
 //PLUGIN DATABASE TABLE DROP HOOK
 
+// function custom_plugin_table_drop(){
+// 	    global $table_prefix, $wpdb;
+// 		$table_slug = $table_prefix . 'custom_plugin';
+// 		$wpdb->query("DROP table IF Exists $table_slug");
+// }
+// register_deactivation_hook(__FILE__, "custom_plugin_table_drop");
+
+//PLUGIN DATABASE TABLE NOT DROP WITHOUT DELETE PLUHIN
+
 function custom_plugin_table_drop(){
 	    global $table_prefix, $wpdb;
 		$table_slug = $table_prefix . 'custom_plugin';
 		$wpdb->query("DROP table IF Exists $table_slug");
 }
-register_deactivation_hook(__FILE__, "custom_plugin_table_drop");
+register_uninstall_hook(__FILE__, "custom_plugin_table_drop");
 
 ?>
