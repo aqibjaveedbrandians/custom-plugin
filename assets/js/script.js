@@ -9,5 +9,17 @@ jQuery(function() {
 		});
 
 	});
+	jQuery("#frmPost").validate({
+		submitHandler:function(){
+			//console.log(jQuery("#frmPost").serialize());
+			var post_data = jQuery("#frmPost").serialize()+"&action=custom_plugin_library&param=post_form_data";
+			$.post(ajaxurl, post_data, function(response){
+			 // console.log("Name: "+response.txtName+"Email: "+response.txtEmail+"Phone: "+response.txtPhone);
+			  var data = $.parseJSON(response);
+			  console.log(data);
+			  console.log("Name: "+data.txtName+" Email: "+data.txtEmail+" Phone: "+data.txtPhone);
+			});
+		}
+	});
 
 });

@@ -1,1 +1,6 @@
 /* Custom Css */
+form .error {
+    color: red;
+    font-weight: 400;
+    margin: 5px 0px;
+}
