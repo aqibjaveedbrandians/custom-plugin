@@ -11,13 +11,31 @@
 </head>
 <body>
 	<?php 
+		// About Wordpress global $wpdb Object
+
+		// global $wpdb;
+		//  $db_results = $wpdb->get_results(
+		//  		$wpdb->prepare(
+		//  			"SELECT * from wp_posts order by ID limit 5",''
+		//  		)
+		//  );
+		//  echo "<pre>"; print_r($db_results); echo "</pre>";
+	?>
+	<?php
+		//Insert data to Word
+
 		global $wpdb;
-		 $db_results = $wpdb->get_results(
-		 		$wpdb->prepare(
-		 			"SELECT * from wp_posts order by ID limit 5",''
-		 		)
-		 );
-		 echo "<pre>"; print_r($db_results); echo "</pre>";
+			//simple insert operation on page refresh
+				$wpdb->insert(
+					"wp_custom_plugin", array(
+						"name" => "Aj Creation",
+						"email" => "aqibjaveed.mad@gmail.com",
+						"phone" => "03062110671"
+				)
+				);
+			//simple insert with query
+				$wpdb->query("insert into wp_custom_plugin (name,email,phone) values('Aj Creation', 'aqibjaveed.mad@gmail.com', '03062110671')");
+
 	?>
 <div class="container">
   <h2>Form</h2>
