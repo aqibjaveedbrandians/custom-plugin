@@ -23,6 +23,8 @@ include_once PLUGIN_DIR_PATH."/include/plugin-menu.php";
 include_once PLUGIN_DIR_PATH."/include/files-view.php";
 
 
+//WP AJAX HOOK
+
 function my_ajax_custom_ajax_req_fun(){
 	echo json_encode($_REQUEST);
 	wp_die();
@@ -33,12 +35,6 @@ add_action( 'wp_ajax_custom_ajax_req', 'my_ajax_custom_ajax_req_fun' );
 // 	wp_die();
 // }
 // add_action( 'wp_ajax_custom_plugin', 'my_ajax_custom_plugin' ); 
-function my_ajax_foobar_handler() {
-    // Make your response and echo it.
- 
-    // Don't forget to stop execution afterward.
-    wp_die();
-}
 
 
 //PLUGIN DATABASE TABLE CREATE HOOK
@@ -104,6 +100,12 @@ function create_page(){
 
 }
 register_activation_hook(__FILE__, "create_page");
+
+//SHORTCODE
+function custom_plugin_function(){
+	include_once PLUGIN_DIR_PATH.'/views/shortcodes/shortcode-template.php'; 
+}
+add_shortcode("custom-plugin", "custom_plugin_function");
 
 //AJAX REQUEST ON CLICK BUTTON
 
