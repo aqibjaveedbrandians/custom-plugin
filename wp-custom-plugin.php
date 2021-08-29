@@ -22,6 +22,21 @@ include_once PLUGIN_DIR_PATH."/include/custom-css-js.php";
 include_once PLUGIN_DIR_PATH."/include/plugin-menu.php";
 include_once PLUGIN_DIR_PATH."/include/files-view.php";
 
+function my_ajax_custom_plugin(){
+	print_r($_REQUEST);
+	wp_die();
+}
+
+add_action( 'wp_ajax_custom_plugin', 'my_ajax_custom_plugin' );
+ 
+function my_ajax_foobar_handler() {
+    // Make your response and echo it.
+ 
+    // Don't forget to stop execution afterward.
+    wp_die();
+}
+
+
 //PLUGIN DATABASE TABLE CREATE HOOK
 
 function custom_plugin_table_create(){

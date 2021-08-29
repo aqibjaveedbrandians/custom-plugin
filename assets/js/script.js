@@ -1,6 +1,13 @@
 // Custom Script
 jQuery(function() {
 
+	jQuery("#frmPostOtherPage").on("click", function(e){
+		e.preventDefault();
+		jQuery.post(ajaxurl,{action:"custom_plugin",name:"Aqib", tut:"AJ Creation"}, function(response){
+			console.log(response);
+		});
+	});
+
 	jQuery(document).on("click", ".btnClick", function(){
 		
 		var post_data = "action=custom_plugin_library&param=get_message";
