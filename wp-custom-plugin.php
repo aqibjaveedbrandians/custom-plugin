@@ -107,6 +107,34 @@ function custom_plugin_function(){
 }
 add_shortcode("custom-plugin", "custom_plugin_function");
 
+//SHORTCODE WITH PARAMITER
+
+function customPluginWithParams($params){
+	$values = shortcode_atts(
+		array( //Default Value Of Params
+			"name" => "Aqib",
+			"author" => "Aj Creations"
+		),
+		$params, //Dynamic Params Coming Shortcode Values
+		'custom-plugin-parameter'
+	);
+	echo "Name : ".$values['name']." And Author ".$values['author'];
+}
+add_shortcode("custom-plugin-parameter","customPluginWithParams");
+
+//TAG BASE SHORTCODE WITH PARAMITER
+
+add_shortcode("tag-based", "custom_plugin_tag_based");
+function custom_plugin_tag_based($parms,$content,$tag){
+	if ($tag=="tag-based") {
+		echo "<h1>".$content."</h1>";
+	}
+	if ($tag=="called_me_down") {
+		echo "This Is Another Advance Format Of WP Shortcode";
+	}
+}
+add_shortcode("called_me_down", "custom_plugin_tag_based");
+
 //AJAX REQUEST ON CLICK BUTTON
 
 if (isset($_REQUEST['action'])) {  // it check the action param is set or not
