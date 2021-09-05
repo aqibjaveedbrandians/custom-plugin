@@ -1,6 +1,27 @@
 // Custom Script
 jQuery(function() {
 
+	// Wp Media
+	jQuery("#btnImage").on("click", function(){
+		var images = wp.media({
+			title: "Upload Image",
+			multiple: false
+		}).open().on("select", function(e) {
+			var uploadedImages = images.state().get("selection").first();
+			// var seletedImage = uploadedImages.toJSON();
+			// jQuery.each(seletedImage, function(index, image){
+			// 	console.log(image.url);
+			// });
+			var selectedImage = uploadedImages.toJSON(); 
+			//console.log(selectedImage.title+"  "+selectedImage.url+"  "+selectedImage.filename);
+			// selectedImage.map(function(image){
+			// 	var itemDetails = image.toJSON();
+			// 	console.log(itemDetails.url);
+			// });
+			jQuery("#getImage").attr("src",selectedImage.url);
+		});
+	});
+
 	// Other Ajax Request
 	jQuery("#frmPostOtherPage").validate({
 		submitHandler:function() {
