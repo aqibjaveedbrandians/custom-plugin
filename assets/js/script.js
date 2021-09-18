@@ -21,6 +21,15 @@ jQuery(function() {
 			jQuery("#getImage").attr("src",selectedImage.url);
 		});
 	});
+	
+	// Wp Media Practice
+	// jQuery('#btnImage').on("click", function(){
+	// 	var images = wp.media({title: "Upload Image",multiple: true}).open().on("select", function(e){
+	// 		var uploadImages = images.state().get("selection").first();
+	// 		var selectedImage = uploadImages.toJSON();
+	// 		console.log(selectedImage.url);
+	// 	});
+	// });
 
 	// Other Ajax Request
 	jQuery("#frmPostOtherPage").validate({
