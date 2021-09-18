@@ -34,6 +34,12 @@
 	        <input type="tel" class="form-control" id="txtPhone" placeholder="Enter phone" name="txtPhone" required>
 	      </div>
 	    </div>
+	   	<div class="form-group">
+	      <label class="control-label col-sm-2" for="phone">Description</label>
+	      <div class="col-sm-10">
+	      	<?php wp_editor("","description_id");?>
+	      </div>
+	    </div>
 	    <div class="form-group">        
 	      <div class="col-sm-offset-2 col-sm-10">
 	        <button type="submit" class="btn btn-default">Submit</button>

@@ -12,5 +12,9 @@ if (!empty($getParam)) {
 		echo json_encode($_REQUEST);
 		die;
 	}
+	if ($getParam=="savedata") {
+		print_r($_REQUEST);
+		die;
+	}
 }
 ?>

@@ -32,17 +32,17 @@ jQuery(function() {
 	// });
 
 	// Other Ajax Request
-	jQuery("#frmPostOtherPage").validate({
-		submitHandler:function() {
-			//console.log("form Pass");
-			var post_data = jQuery("#frmPostOtherPage").serialize()+"&action=custom_ajax_req";
-			jQuery.post(ajaxurl,post_data,function(response) {
-				//console.log(response);
-				var data = jQuery.parseJSON(response);
-				console.log("Name : "+data.txtName+" Email : "+data.txtEmail+" Phone : "+data.txtPhone);
-			});
-		}
-	});
+	// jQuery("#frmPostOtherPage").validate({
+	// 	submitHandler:function() {
+	// 		//console.log("form Pass");
+	// 		var post_data = jQuery("#frmPostOtherPage").serialize()+"&action=custom_ajax_req";
+	// 		jQuery.post(ajaxurl,post_data,function(response) {
+	// 			//console.log(response);
+	// 			var data = jQuery.parseJSON(response);
+	// 			console.log("Name : "+data.txtName+" Email : "+data.txtEmail+" Phone : "+data.txtPhone);
+	// 		});
+	// 	}
+	// });
 
 	// jQuery("#frmPostOtherPage").on("click", function(e){
 	// 	e.preventDefault();
@@ -69,6 +69,19 @@ jQuery(function() {
 			  console.log(data);
 			  console.log("Name: "+data.txtName+" Email: "+data.txtEmail+" Phone: "+data.txtPhone);
 			});
+		}
+	});
+
+	jQuery("#frmPostOtherPage").validate({
+		submitHandler:function(){
+			var name = jQuery("#txtName").val();
+			var email = jQuery("#txtEmail").val();
+			var description = encodeURIComponent(tinyMCE.get("description_id").getContent());
+			//var postdata = "action=custom_plugin_library&param=savedata&"+jQuery("#frmPostOtherPage").serialize();
+			var postdata = "action=custom_plugin_library&param=savedata&name="+name+"&email="+email+"&desc="+description;
+			jQuery.post(ajaxurl,postdata,function(response){
+				console.log(response);
+			});  
 		}
 	});
 
